@@ -8,16 +8,31 @@
       background: pink;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding-top: 100px;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
     }
+
     h1 {
+      margin-top: 100px;
       font-size: 3rem;
     }
+
     button {
       font-size: 1.5rem;
       padding: 10px 20px;
-      margin: 20px;
       cursor: pointer;
+      position: absolute;
+    }
+
+    #yes {
+      left: 40%;
+      top: 300px;
+    }
+
+    #no {
+      left: 55%;
+      top: 300px;
     }
   </style>
 </head>
@@ -25,15 +40,25 @@
 
   <h1>Will you be my Valentine? 💖</h1>
 
-  <button onclick="yes()">Yes 💘</button>
-  <button onclick="no()">No 😢</button>
+  <button id="yes" onclick="yes()">Yes 💘</button>
+  <button id="no" onmouseover="moveNo()">No 😢</button>
 
   <script>
     function yes() {
       alert("YAY!!! 💕 I knew you'd say yes!");
     }
-    function no() {
-      alert("That's not an option 😌 Try again.");
+
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
     }
   </script>
 
