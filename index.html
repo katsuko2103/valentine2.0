@@ -8,28 +8,31 @@
       background: pink;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding-top: 120px;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
     }
 
     h1 {
+      margin-top: 100px;
       font-size: 3rem;
-      margin-bottom: 40px;
     }
 
     button {
       font-size: 1.5rem;
-      padding: 12px 24px;
-      margin: 20px;
+      padding: 10px 20px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      position: absolute;
     }
 
     #yes {
-      transform: scale(1);
+      left: 40%;
+      top: 300px;
     }
 
     #no {
-      transform: scale(1);
+      left: 55%;
+      top: 300px;
     }
   </style>
 </head>
@@ -38,28 +41,24 @@
   <h1>Will you be my Valentine? 💖</h1>
 
   <button id="yes" onclick="yes()">Yes 💘</button>
-  <button id="no" onclick="shrinkNo()">No 😢</button>
+  <button id="no" onmouseover="moveNo()">No 😢</button>
 
   <script>
-    let yesScale = 1;
-    let noScale = 1;
-
     function yes() {
-      alert("YAY!!! 💕 Best decision ever!");
+      alert("YAY!!! 💕 I knew you'd say yes!");
     }
 
-    function shrinkNo() {
-      yesScale += 0.2;
-      noScale -= 0.15;
+    function moveNo() {
+      const noBtn = document.getElementById("no");
 
-      if (noScale < 0.3) {
-        noScale = 0.3;
-      }
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
 
-      document.getElementById("yes").style.transform =
-        `scale(${yesScale})`;
-      document.getElementById("no").style.transform =
-        `scale(${noScale})`;
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
     }
   </script>
 
